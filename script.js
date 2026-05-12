@@ -243,7 +243,7 @@ btnBack.addEventListener('click', () => {
     setTimeout(() => step1.classList.remove('hidden-step'), 100);
 });
 
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzYSFv6tu-ShSdrxqRKuWsjUTH-VHlid8geswxfuZLkctTDtrvTIOKjdRNbs0rxIn7N/exec';
 
 formStep.addEventListener('submit', (e) => {
     e.preventDefault();
