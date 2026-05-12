@@ -23,35 +23,16 @@ muteBtn.addEventListener('click', () => {
 // Create CSS confetti
 function fireConfetti() {
     const colors = ['#c9a84c', '#e8d5a0', '#ffffff'];
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 40; i++) {
         const particle = document.createElement('div');
-        particle.style.position = 'fixed';
-        particle.style.width = Math.random() * 8 + 4 + 'px';
-        particle.style.height = Math.random() * 8 + 4 + 'px';
+        particle.classList.add('confetti-particle');
         particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.left = 50 + (Math.random() * 10 - 5) + 'vw';
-        particle.style.top = '60vh';
-        particle.style.borderRadius = '2px';
-        particle.style.pointerEvents = 'none';
-        particle.style.zIndex = '1000';
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        particle.style.animationDelay = Math.random() * 0.5 + 's';
         document.body.appendChild(particle);
-
-        const angle = Math.random() * Math.PI * 2;
-        const velocity = 15 + Math.random() * 15;
-        const vx = Math.cos(angle) * velocity;
-        const vy = Math.sin(angle) * velocity - 20;
-
-        let x = 0, y = 0, opacity = 1;
-        const animate = () => {
-            x += vx;
-            y += vy + 2; // gravity
-            opacity -= 0.02;
-            particle.style.transform = `translate(${x}px, ${y}px) rotate(${x*2}deg)`;
-            particle.style.opacity = opacity;
-            if (opacity > 0) requestAnimationFrame(animate);
-            else particle.remove();
-        };
-        requestAnimationFrame(animate);
+        
+        setTimeout(() => particle.remove(), 5000);
     }
 }
 
@@ -159,6 +140,9 @@ function initScratchCard() {
         if (!isDrawing || scratched) return;
         e.preventDefault();
         
+        const indicator = document.getElementById('scratch-indicator');
+        if (indicator) indicator.classList.add('hidden');
+
         const pos = getPosition(e);
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
@@ -193,10 +177,10 @@ setInterval(() => {
     
     if (distance < 0) return;
 
-    document.getElementById('cd-days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-    document.getElementById('cd-hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-    document.getElementById('cd-mins').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-    document.getElementById('cd-secs').innerText = Math.floor((distance % (1000)) / 1000).toString().padStart(2, '0');
+    document.getElementById('days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+    document.getElementById('hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+    document.getElementById('mins').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+    document.getElementById('secs').innerText = Math.floor((distance % (1000)) / 1000).toString().padStart(2, '0');
 }, 1000);
 
 // RSVP Flow
