@@ -94,13 +94,13 @@ const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.classList.add('is-visible');
             observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-document.querySelectorAll('.fade-in-up, .fade-in-stagger').forEach(el => {
+document.querySelectorAll('.reveal-section').forEach(el => {
     observer.observe(el);
 });
 
