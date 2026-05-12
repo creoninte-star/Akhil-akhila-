@@ -255,7 +255,14 @@ body {
   position: relative; width: 250px; height: 60px; margin: 0 auto 2rem;
   border: 1px solid rgba(201,168,76,0.4); background: var(--clr-bg-primary);
   display: flex; align-items: center; justify-content: center; overflow: hidden;
+  animation: pulseScratch 2s infinite ease-in-out;
 }
+@keyframes pulseScratch {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(201, 168, 76, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(201, 168, 76, 0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(201, 168, 76, 0.4); }
+}
+.scratch-wrap.revealed { animation: none; }
 .scratch-bracket { position: absolute; width: 10px; height: 10px; border: 2px solid var(--clr-gold); }
 .scratch-bracket-tl { top: 2px; left: 2px; border-right: none; border-bottom: none; }
 .scratch-bracket-tr { top: 2px; right: 2px; border-left: none; border-bottom: none; }
@@ -447,28 +454,4 @@ body {
     100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
 
-/* Scratch Indicator */
-.scratch-indicator {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
-    pointer-events: none;
-    animation: bounce 1.5s infinite;
-    z-index: 5;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    background: rgba(0,0,0,0.4);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    border: 1px solid var(--clr-gold);
-}
-@keyframes bounce {
-    0%, 100% { transform: translate(-50%, -50%); }
-    50% { transform: translate(-50%, -60%); }
-}
-.scratch-indicator.hidden {
-    opacity: 0;
-    transition: opacity 0.3s;
-}
+

@@ -139,9 +139,6 @@ function initScratchCard() {
     function scratch(e) {
         if (!isDrawing || scratched) return;
         e.preventDefault();
-        
-        const indicator = document.getElementById('scratch-indicator');
-        if (indicator) indicator.classList.add('hidden');
 
         const pos = getPosition(e);
         ctx.globalCompositeOperation = 'destination-out';
