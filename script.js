@@ -105,24 +105,31 @@ function initScratchCard() {
     const ctx = canvas.getContext('2d');
     const wrap = document.getElementById('scratch-wrap');
     
-    // Strict fixed dimensions to prevent any scaling bugs
-    canvas.width = 250;
-    canvas.height = 60;
+    // High-DPI Canvas Setup for Crystal Clear Rendering
+    const dpr = window.devicePixelRatio || 1;
+    const cssWidth = 250;
+    const cssHeight = 60;
+
+    canvas.width = cssWidth * dpr;
+    canvas.height = cssHeight * dpr;
+    canvas.style.width = cssWidth + 'px';
+    canvas.style.height = cssHeight + 'px';
+    ctx.scale(dpr, dpr);
 
     // Draw gold foil base
-    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    const gradient = ctx.createLinearGradient(0, 0, cssWidth, cssHeight);
     gradient.addColorStop(0, '#D8C2A0');
     gradient.addColorStop(0.5, '#F5E4C3');
     gradient.addColorStop(1, '#B6A084');
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, cssWidth, cssHeight);
 
     // Add elegant diagonal foil lines
     ctx.lineWidth = 1;
-    for (let i = -canvas.width; i < canvas.width; i += 8) {
+    for (let i = -cssWidth; i < cssWidth; i += 8) {
         ctx.beginPath();
         ctx.moveTo(i, 0);
-        ctx.lineTo(i + canvas.height, canvas.height);
+        ctx.lineTo(i + cssHeight, cssHeight);
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
         ctx.stroke();
     }
@@ -130,7 +137,7 @@ function initScratchCard() {
     // Add a classy inner border
     ctx.strokeStyle = 'rgba(74, 55, 40, 0.2)';
     ctx.lineWidth = 1;
-    ctx.strokeRect(4, 4, canvas.width - 8, canvas.height - 8);
+    ctx.strokeRect(4, 4, cssWidth - 8, cssHeight - 8);
 
     // Draw stylized text with a subtle shadow
     ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
@@ -141,7 +148,7 @@ function initScratchCard() {
     ctx.font = 'bold 13px "Cinzel", Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('✨ SCRATCH TO REVEAL ✨', canvas.width / 2, canvas.height / 2);
+    ctx.fillText('✨ SCRATCH TO REVEAL ✨', cssWidth / 2, cssHeight / 2);
     ctx.shadowColor = 'transparent'; // reset shadow
 
     let isDrawing = false;
@@ -180,8 +187,8 @@ function initScratchCard() {
         }
         
         return {
-            x: ((clientX - rect.left) / (rect.right - rect.left)) * canvas.width,
-            y: ((clientY - rect.top) / (rect.bottom - rect.top)) * canvas.height,
+            x: ((clientX - rect.left) / (rect.right - rect.left)) * cssWidth,
+            y: ((clientY - rect.top) / (rect.bottom - rect.top)) * cssHeight,
             globalX: clientX,
             globalY: clientY
         };
