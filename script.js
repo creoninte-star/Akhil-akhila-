@@ -137,7 +137,7 @@ function initScratchCard() {
 
     function scratch(e) {
         if (!isDrawing || scratched) return;
-        e.preventDefault();
+        if (e.cancelable) { e.preventDefault(); }
 
         const pos = getPosition(e);
         ctx.globalCompositeOperation = 'destination-out';
@@ -154,12 +154,12 @@ function initScratchCard() {
         }
     }
 
-    canvas.addEventListener('mousedown', () => { isDrawing = true; });
-    canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+    canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+    canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, { passive: false });
     window.addEventListener('mouseup', () => { isDrawing = false; });
     window.addEventListener('touchend', () => { isDrawing = false; });
     canvas.addEventListener('mousemove', scratch);
-    canvas.addEventListener('touchmove', scratch);
+    canvas.addEventListener('touchmove', scratch, { passive: false });
     
     // Initially blur the details below it
     document.getElementById('event-details').classList.add('blurred');
