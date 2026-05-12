@@ -392,9 +392,8 @@ body {
 .reveal-section .lucky-banner, .reveal-section .rsvp-card,
 .reveal-section .closing-ornament, .reveal-section .closing-quote, .reveal-section .closing-signoff, .reveal-section .contact-pills {
   opacity: 0;
-  transform: translateY(40px) translateZ(-50px);
-  filter: blur(8px);
-  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1s ease;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .reveal-section.is-visible .arch-intro, .reveal-section.is-visible .arch-names, .reveal-section.is-visible .arch-parents, .reveal-section.is-visible .arch-photo, .reveal-section.is-visible .arch-request,
@@ -402,8 +401,7 @@ body {
 .reveal-section.is-visible .lucky-banner, .reveal-section.is-visible .rsvp-card,
 .reveal-section.is-visible .closing-ornament, .reveal-section.is-visible .closing-quote, .reveal-section.is-visible .closing-signoff, .reveal-section.is-visible .contact-pills {
   opacity: 1;
-  transform: translateY(0) translateZ(0);
-  filter: blur(0);
+  transform: translateY(0);
 }
 
 /* Staggered Delays for Arch Card */
