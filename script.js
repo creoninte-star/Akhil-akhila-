@@ -231,3 +231,14 @@ formStep.addEventListener('submit', (e) => {
         fireConfetti();
     }, 100);
 });
+
+// Slideshow Logic
+const slides = document.querySelectorAll('#arch-slideshow .slide');
+let currentSlide = 0;
+if (slides.length > 0) {
+    setInterval(() => {
+        slides[currentSlide].classList.remove('slide-active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('slide-active');
+    }, 4000); // Change image every 4 seconds
+}
