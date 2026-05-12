@@ -12,10 +12,10 @@ let envelopeOpened = false;
 muteBtn.addEventListener('click', () => {
     if (isMusicPlaying) {
         bgMusic.pause();
-        muteBtn.textContent = '🔇';
+        muteBtn.classList.add('paused');
     } else {
         bgMusic.play().catch(e => console.log("Play prevented"));
-        muteBtn.textContent = '🔊';
+        muteBtn.classList.remove('paused');
     }
     isMusicPlaying = !isMusicPlaying;
 });
@@ -64,7 +64,7 @@ waxSeal.addEventListener('click', () => {
     bgMusic.volume = 0.5;
     bgMusic.play().then(() => {
         isMusicPlaying = true;
-        muteBtn.textContent = '🔊';
+        muteBtn.classList.remove('paused');
     }).catch(e => console.log("Audio play blocked"));
 
     // Step 1: Flap opens

@@ -18,7 +18,11 @@
 <audio id="bg-music" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/11/22/audio_d1718ab41b.mp3?filename=romantic-piano-126484.mp3" type="audio/mpeg" />
 </audio>
-<button id="mute-btn" class="mute-btn" aria-label="Toggle music">🔇</button>
+<button id="mute-btn" class="music-disc paused" aria-label="Toggle music">
+  <svg class="music-icon" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+  </svg>
+</button>
 
 <!-- ═══════════════════════════════════════════
      FLOATING PARTICLES (bg)

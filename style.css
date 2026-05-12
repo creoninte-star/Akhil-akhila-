@@ -29,19 +29,18 @@ body {
 }
 
 /* Audio Controls */
-.mute-btn {
-  position: fixed; top: 20px; right: 20px; z-index: 1000;
-  background: rgba(17, 32, 112, 0.7);
-  border: 1px solid var(--clr-gold); color: var(--clr-gold);
-  width: 40px; height: 40px; border-radius: 50%;
-  cursor: pointer; font-size: 1.2rem;
-  display: flex; align-items: center; justify-content: center;
-  backdrop-filter: blur(5px); transition: var(--transition-smooth);
+.music-disc {
+  position: fixed; bottom: 30px; right: 30px; z-index: 1000;
+  background: var(--clr-bg-primary); border: 2px solid var(--clr-gold);
+  width: 50px; height: 50px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: box-shadow 0.3s ease, transform 0.2s ease;
+  animation: spinDisc 4s linear infinite;
 }
-.mute-btn:hover {
-  background: var(--clr-gold); color: var(--clr-bg-primary);
-  box-shadow: var(--shadow-glow);
-}
+.music-disc:hover { box-shadow: var(--shadow-glow); transform: scale(1.05); }
+.music-disc.paused { animation-play-state: paused; }
+.music-icon { width: 24px; height: 24px; fill: var(--clr-gold); }
+@keyframes spinDisc { 100% { transform: rotate(360deg); } }
 
 /* Particles */
 .particles-bg {
