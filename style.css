@@ -267,7 +267,7 @@ body {
 .event-item { margin-bottom: 2rem; }
 .event-icon-ring { font-size: 1.5rem; margin-bottom: 0.5rem; }
 .event-name { font-family: var(--font-heading); font-size: 1.5rem; color: var(--clr-text); margin-bottom: 0.2rem; }
-.event-islamic-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--clr-gold); margin-bottom: 1rem; font-weight: bold; }
+.event-sub-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--clr-gold); margin-bottom: 1rem; font-weight: bold; }
 .event-date-main { font-family: var(--font-heading); font-size: 1.2rem; font-weight: bold; color: var(--clr-text); }
 .event-time { font-size: 0.8rem; color: var(--clr-text-secondary); margin-bottom: 1rem; }
 
