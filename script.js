@@ -263,18 +263,29 @@ function initScratchCard() {
 }
 
 // Countdown Timer
-const targetDate = new Date('May 30, 2026 16:00:00').getTime();
-setInterval(() => {
+// Use ISO 8601 format for Safari cross-browser compatibility
+const targetDate = new Date('2026-05-30T16:00:00').getTime();
+const daysEl = document.getElementById('cd-days');
+const hoursEl = document.getElementById('cd-hours');
+const minsEl = document.getElementById('cd-mins');
+const secsEl = document.getElementById('cd-secs');
+
+function updateTimer() {
     const now = new Date().getTime();
     const distance = targetDate - now;
     
-    if (distance < 0) return;
+    if (distance < 0 || !daysEl) return;
 
-    document.getElementById('cd-days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-    document.getElementById('cd-hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-    document.getElementById('cd-mins').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-    document.getElementById('cd-secs').innerText = Math.floor((distance % (1000)) / 1000).toString().padStart(2, '0');
-}, 1000);
+    daysEl.textContent = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+    hoursEl.textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+    minsEl.textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+    secsEl.textContent = Math.floor((distance % (1000)) / 1000).toString().padStart(2, '0');
+}
+
+if (daysEl) {
+    setInterval(updateTimer, 1000);
+    updateTimer();
+}
 
 // RSVP Flow
 const btnYes = document.getElementById('rsvp-yes-btn');
