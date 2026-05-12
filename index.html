@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akhila & Akhil | You're Invited · 30 May 2026</title>
+  <meta name="description" content="Join us to celebrate the wedding of Akhila & Akhil on Saturday, 30th May 2026 at St. Antony's Church, Vaduthala, Ernakulam." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     AUDIO
+═══════════════════════════════════════════ -->
+<audio id="bg-music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/11/22/audio_d1718ab41b.mp3?filename=romantic-piano-126484.mp3" type="audio/mpeg" />
+</audio>
+<button id="mute-btn" class="mute-btn" aria-label="Toggle music">🔇</button>
+
+<!-- ═══════════════════════════════════════════
+     FLOATING PARTICLES (bg)
+═══════════════════════════════════════════ -->
+<div id="particles" class="particles-bg"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — ENVELOPE SCREEN
+     The full viewport IS the envelope.
+     Click wax seal → flap opens → entire screen slides down.
+═══════════════════════════════════════════ -->
+<div id="env-screen" class="env-screen">
+
+  <!-- Corner ornaments -->
+  <div class="corner-ornament corner-tl">
+    <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10,50 C20,20 80,20 90,50 C80,80 20,80 10,50Z" opacity=".35"/>
+      <path d="M50,10 C20,20 20,80 50,90 C80,80 80,20 50,10Z" opacity=".25"/>
+      <circle cx="50" cy="50" r="10" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="corner-ornament corner-br">
+    <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10,50 C20,20 80,20 90,50 C80,80 20,80 10,50Z" opacity=".35"/>
+      <path d="M50,10 C20,20 20,80 50,90 C80,80 80,20 50,10Z" opacity=".25"/>
+      <circle cx="50" cy="50" r="10" opacity=".5"/>
+    </svg>
+  </div>
+
+  <!-- Top welcome text -->
+  <div class="env-welcome" id="env-welcome">
+    <p class="env-welcome-line1">You Are Cordially Invited To Witness</p>
+    <p class="env-welcome-line2">The Union Of Two Souls</p>
+  </div>
+
+  <!-- The envelope card -->
+  <div class="env-card-wrap">
+    <div class="env-card" id="env-card">
+
+      <!-- Inside Pocket Background -->
+      <div class="env-inside"></div>
+
+      <!-- Peeking invitation text inside the card -->
+      <div class="env-peek">
+        <p class="env-peek-names">Akhila &amp; Akhil</p>
+        <p class="env-peek-date">30 · 05 · 2026</p>
+      </div>
+
+      <!-- Real Envelope Flaps (Sides and Bottom) -->
+      <div class="env-flaps-wrap">
+        <div class="env-flap-side env-flap-left"></div>
+        <div class="env-flap-side env-flap-right"></div>
+        <div class="env-flap-bottom"></div>
+      </div>
+
+      <!-- Flap (triangle pointing down) -->
+      <div class="env-flap" id="env-flap">
+        <div class="env-flap-body">
+          <!-- Gold edge line -->
+          <svg class="env-flap-line" viewBox="0 0 100 60" preserveAspectRatio="none">
+            <polyline points="0.5,0.5 50,59 99.5,0.5" stroke="#c9a84c" stroke-width="1.2" fill="none"/>
+          </svg>
+        </div>
+        <!-- Breathing wax seal at tip of flap -->
+        <div class="wax-seal" id="wax-seal">
+          <div class="wax-seal-inner">
+            <span class="seal-name">Akhila</span>
+            <span class="seal-amp">&amp;</span>
+            <span class="seal-name">Akhil</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom tap hint -->
+  <div class="env-hint" id="env-hint">
+    <p>Tap the Seal to Open</p>
+    <span class="hint-line"></span>
+  </div>
+
+</div><!-- /env-screen -->
+
+
+<!-- ═══════════════════════════════════════════
+     MAIN INVITATION (hidden under envelope)
+═══════════════════════════════════════════ -->
+<main id="main-inv" class="main-inv">
+
+  <!-- ─── SECTION 2: MASTER INVITATION CARD (arched) ─── -->
+  <section class="master-section">
+    <!-- Mandala bg circles -->
+    <div class="mandala-bg">
+      <div class="mandala-ring mandala-top"></div>
+      <div class="mandala-ring mandala-bot"></div>
+    </div>
+
+    <!-- Main arched card -->
+    <div class="arch-card fade-in-up">
+      <!-- Double gold border frames -->
+      <div class="arch-frame arch-frame-outer"></div>
+      <div class="arch-frame arch-frame-inner"></div>
+      <!-- Corner diamond accents -->
+      <div class="arch-diamond arch-diamond-tl"></div>
+      <div class="arch-diamond arch-diamond-tr"></div>
+
+      <!-- Interlocked rings -->
+      <div class="wedding-rings">
+        <div class="ring ring-left"></div>
+        <div class="ring ring-right"></div>
+      </div>
+
+      <!-- Intro text -->
+      <p class="arch-intro">With joy in our hearts, we request the honour of your presence at the wedding of:</p>
+
+      <!-- Couple names -->
+      <div class="arch-names">
+        <h2 class="arch-name">Akhila</h2>
+        <span class="arch-heart">♥</span>
+        <h2 class="arch-name">Akhil</h2>
+      </div>
+
+      <p class="arch-together">Together With Their Families</p>
+
+      <!-- Parents -->
+      <div class="arch-parents">
+        <div class="arch-parent-row">
+          <p class="arch-parent-name">K. V. Jain &amp; Telma Jain</p>
+          <p class="arch-parent-label">Akhila's Parents</p>
+        </div>
+        <div class="arch-parent-divider"></div>
+        <div class="arch-parent-row">
+          <p class="arch-parent-name">K. M. Thomas &amp; Juliet Thomas</p>
+          <p class="arch-parent-label">Akhil's Parents</p>
+        </div>
+      </div>
+
+      <!-- Photo placeholder area -->
+      <div class="arch-photo">
+        <div class="arch-photo-inner">
+          <span class="arch-photo-icon">📷</span>
+          <p>Photo Coming Soon</p>
+        </div>
+        <div class="arch-photo-label">The Couple</div>
+      </div>
+
+      <div class="arch-gold-line"></div>
+      <p class="arch-request">Request the honour of your presence<br/>to share in our joy</p>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 3: EVENTS + SCRATCH CARD ─── -->
+  <section class="events-section">
+    <div class="events-card fade-in-up">
+      <h2 class="events-title">Wedding Ceremonies</h2>
+      <div class="events-title-line"></div>
+
+      <!-- ★ SCRATCH CARD ★ -->
+      <div class="scratch-wrap" id="scratch-wrap">
+        <!-- Gold corner brackets -->
+        <div class="scratch-bracket scratch-bracket-tl"></div>
+        <div class="scratch-bracket scratch-bracket-tr"></div>
+        <div class="scratch-bracket scratch-bracket-bl"></div>
+        <div class="scratch-bracket scratch-bracket-br"></div>
+
+        <!-- The underlying date text (visible after scratch) -->
+        <div class="scratch-inner">
+          <p class="scratch-date-text">30th May, 2026</p>
+        </div>
+
+        <!-- Canvas overlay for scratch -->
+        <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
+      </div>
+
+      <!-- Event details (blurred until scratch) -->
+      <div class="event-details" id="event-details">
+
+        <!-- Event 1 -->
+        <div class="event-item">
+          <div class="event-icon-ring">💍</div>
+          <h3 class="event-name">Wedding Ceremony</h3>
+          <p class="event-date-main">Saturday, 30th May 2026</p>
+          <p class="event-time">4:00 PM onwards</p>
+
+          <!-- Countdown -->
+          <div class="countdown" id="countdown">
+            <div class="countdown-unit"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Days</span></div>
+            <div class="countdown-unit"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Hours</span></div>
+            <div class="countdown-unit"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">Mins</span></div>
+            <div class="countdown-unit"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">Secs</span></div>
+          </div>
+
+          <div class="event-venue">
+            <p class="event-venue-name">St. Antony's Church</p>
+            <p class="event-venue-sub">Vaduthala, Ernakulam</p>
+          </div>
+          <a href="https://www.google.co.in/maps/place/St.+Antony's+Roman+Catholic+Church,+Vaduthala/@10.022471,76.2719463,17z" target="_blank" class="event-map-btn">📍 Get Directions</a>
+        </div>
+
+        <div class="event-divider"></div>
+
+        <!-- Event 2 -->
+        <div class="event-item">
+          <div class="event-icon-ring">🥂</div>
+          <h3 class="event-name">Wedding Reception</h3>
+          <p class="event-islamic-label">Following the Ceremony</p>
+          <p class="event-date-main">Saturday, 30th May 2026</p>
+          <p class="event-time">Following the Matrimony</p>
+
+          <div class="event-venue">
+            <p class="event-venue-name">Carmel Hall</p>
+            <p class="event-venue-sub">Cemetry Junction, Kochi</p>
+          </div>
+          <a href="https://www.google.co.in/maps/place/Carmel+Hall/@9.9914413,76.2792228,17z" target="_blank" class="event-map-btn">📍 Get Directions</a>
+        </div>
+
+      </div><!-- /event-details -->
+    </div>
+  </section>
+
+
+
+  <!-- ─── SECTION 5: RSVP ─── -->
+  <section class="rsvp-section fade-in-up" id="rsvp-section">
+
+    <!-- Lucky draw banner -->
+    <div class="lucky-banner">
+      <span class="lucky-icon">🎉</span>
+      <div class="lucky-text-wrap">
+        <h3>Lucky Draw!</h3>
+        <p>All guests who confirm attendance will be entered into an exclusive lucky draw at the reception!</p>
+      </div>
+      <span class="lucky-icon">✨</span>
+    </div>
+
+    <div class="rsvp-card" id="rsvp-card">
+      <h2 class="rsvp-title">Are You Coming?</h2>
+      <div class="rsvp-title-line"></div>
+      <p class="rsvp-subtitle">Please confirm by 25th May 2026</p>
+
+      <!-- Step 1: Yes / No -->
+      <div id="rsvp-step1" class="rsvp-step">
+        <button class="rsvp-yes-btn" id="rsvp-yes-btn">Yes, I'll Be There! 😍</button>
+        <button class="rsvp-no-btn" id="rsvp-no-btn">Unfortunately, I Can't Make It</button>
+      </div>
+
+      <!-- Step 2: Form (shown after Yes) -->
+      <form id="rsvp-form" class="rsvp-step hidden-step">
+        <input type="text" name="name" id="f-name" placeholder="Full Name" required class="rsvp-input" />
+        <input type="tel" name="phone" id="f-phone" placeholder="Phone Number" required class="rsvp-input" />
+        <input type="number" name="guests" id="f-guests" placeholder="Number of Guests" min="1" max="10" required class="rsvp-input" />
+        <div class="rsvp-select-wrap">
+          <select name="meal" id="f-meal" required class="rsvp-select">
+            <option value="" disabled selected>Meal Preference</option>
+            <option value="veg">🥗 Vegetarian</option>
+            <option value="non-veg">🍖 Non-Vegetarian</option>
+          </select>
+        </div>
+        <button type="submit" class="rsvp-submit-btn">Confirm &amp; Enter Lucky Draw 🎉</button>
+        <button type="button" class="rsvp-back-btn" id="rsvp-back-btn">← Back</button>
+      </form>
+
+      <!-- Step 3: Success (Yes) -->
+      <div id="rsvp-success" class="rsvp-step hidden-step rsvp-success-wrap">
+        <div class="success-check-wrap">
+          <svg class="checkmark" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark-path" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+        <h3 class="success-title">You're In! 🎉</h3>
+        <p class="success-desc">See you on 30th May 2026!</p>
+        <div class="lucky-prizes">
+          <p>🥇 First Prize: Gift</p>
+          <p>🥈 Second Prize: Cash Prize</p>
+          <p>🥉 Third Prize: Cash Prize</p>
+        </div>
+        <p class="lucky-announce">Winners announced live at the reception!</p>
+      </div>
+
+      <!-- Step 3b: Decline -->
+      <div id="rsvp-decline" class="rsvp-step hidden-step rsvp-decline-wrap">
+        <h3 class="decline-title">Thank You!</h3>
+        <p class="decline-desc">We'll miss you, but thank you for letting us know!</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── SECTION 6: CLOSING + CONTACTS ─── -->
+  <section class="closing-section fade-in-up">
+    <div class="closing-ornament">
+      <span class="clo-line"></span>
+      <span class="clo-diamond"></span>
+      <span class="clo-line"></span>
+    </div>
+
+    <p class="closing-quote">"And of His signs is that He created for you from yourselves mates that you may find tranquility in them."</p>
+    <p class="closing-ref">— Quran 30:21 —</p>
+
+    <div class="closing-mid-line"></div>
+
+    <h3 class="closing-signoff">With Love</h3>
+    <p class="closing-names">Akhila &amp; Akhil</p>
+    <p class="closing-date">30th May 2026</p>
+
+    <div class="closing-mid-line"></div>
+
+    <p class="closing-contact-title">For Enquiries, Contact:</p>
+    <div class="contact-pills">
+      <a href="tel:9846198555" class="contact-pill">Anish Jain: 9846198555</a>
+      <a href="tel:9846198555" class="contact-pill">Anila Jain: 9846198555</a>
+      <a href="tel:9388604216" class="contact-pill">Sebi Bridgit: 9388604216</a>
+    </div>
+
+    <div class="closing-footer">
+      <p>Made with ❤️ for Akhila &amp; Akhil</p>
+    </div>
+  </section>
+
+</main><!-- /main-inv -->
+
+<script src="script.js"></script>
+</body>
+</html>
