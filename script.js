@@ -105,10 +105,9 @@ function initScratchCard() {
     const ctx = canvas.getContext('2d');
     const wrap = document.getElementById('scratch-wrap');
     
-    // Set canvas resolution
-    const rect = wrap.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
+    // Set canvas resolution to fixed CSS dimensions
+    canvas.width = 250;
+    canvas.height = 60;
 
     // Draw gold foil
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
