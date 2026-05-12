@@ -109,22 +109,65 @@ function initScratchCard() {
     canvas.width = 250;
     canvas.height = 60;
 
-    // Draw gold foil
+    // Draw gold foil base
     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
     gradient.addColorStop(0, '#D8C2A0');
-    gradient.addColorStop(0.5, '#E5D5BC');
+    gradient.addColorStop(0.5, '#F5E4C3');
     gradient.addColorStop(1, '#B6A084');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw text
+    // Add elegant diagonal foil lines
+    ctx.lineWidth = 1;
+    for (let i = -canvas.width; i < canvas.width; i += 8) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i + canvas.height, canvas.height);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+        ctx.stroke();
+    }
+
+    // Add a classy inner border
+    ctx.strokeStyle = 'rgba(74, 55, 40, 0.2)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(4, 4, canvas.width - 8, canvas.height - 8);
+
+    // Draw stylized text with a subtle shadow
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+    ctx.shadowBlur = 2;
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 1;
     ctx.fillStyle = '#4A3728';
-    ctx.font = 'bold 12px Arial, sans-serif';
+    ctx.font = 'bold 13px "Cinzel", Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('SCRATCH TO REVEAL', canvas.width / 2, canvas.height / 2);
+    ctx.fillText('✨ SCRATCH TO REVEAL ✨', canvas.width / 2, canvas.height / 2);
+    ctx.shadowColor = 'transparent'; // reset shadow
 
     let isDrawing = false;
+
+    // Mini Popper Effect Function
+    function spawnMiniPopper(globalX, globalY) {
+        const colors = ['#c9a84c', '#e8d5a0', '#ffffff'];
+        for (let i = 0; i < 3; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('mini-popper');
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.left = globalX + 'px';
+            particle.style.top = globalY + 'px';
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 40 + 10;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity - 20; 
+            
+            particle.style.setProperty('--tx', `${tx}px`);
+            particle.style.setProperty('--ty', `${ty}px`);
+            
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 600);
+        }
+    }
 
     function getPos(e) {
         const rect = canvas.getBoundingClientRect();
@@ -138,7 +181,9 @@ function initScratchCard() {
         
         return {
             x: ((clientX - rect.left) / (rect.right - rect.left)) * canvas.width,
-            y: ((clientY - rect.top) / (rect.bottom - rect.top)) * canvas.height
+            y: ((clientY - rect.top) / (rect.bottom - rect.top)) * canvas.height,
+            globalX: clientX,
+            globalY: clientY
         };
     }
 
@@ -164,6 +209,11 @@ function initScratchCard() {
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
         ctx.fill();
+        
+        // Spawn mini party poppers occasionally while scratching
+        if (Math.random() > 0.6) {
+            spawnMiniPopper(pos.globalX, pos.globalY);
+        }
 
         checkReveal();
     }
