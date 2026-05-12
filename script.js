@@ -105,7 +105,7 @@ function initScratchCard() {
     const ctx = canvas.getContext('2d');
     const wrap = document.getElementById('scratch-wrap');
     
-    // Set canvas resolution to fixed CSS dimensions
+    // Strict fixed dimensions to prevent any scaling bugs
     canvas.width = 250;
     canvas.height = 60;
 
@@ -119,48 +119,88 @@ function initScratchCard() {
 
     // Draw text
     ctx.fillStyle = '#4A3728';
-    ctx.font = 'bold 12px sans-serif';
+    ctx.font = 'bold 12px Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.letterSpacing = '3px';
     ctx.fillText('SCRATCH TO REVEAL', canvas.width / 2, canvas.height / 2);
 
     let isDrawing = false;
-    let scratchPoints = 0;
 
-    function getPosition(e) {
+    function getPos(e) {
         const rect = canvas.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        return { x: clientX - rect.left, y: clientY - rect.top };
+        let clientX = e.clientX;
+        let clientY = e.clientY;
+        
+        if (e.touches && e.touches.length > 0) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
+        }
+        
+        return {
+            x: ((clientX - rect.left) / (rect.right - rect.left)) * canvas.width,
+            y: ((clientY - rect.top) / (rect.bottom - rect.top)) * canvas.height
+        };
+    }
+
+    function startDraw(e) {
+        if (scratched) return;
+        isDrawing = true;
+        scratch(e);
+    }
+
+    function stopDraw() {
+        isDrawing = false;
     }
 
     function scratch(e) {
         if (!isDrawing || scratched) return;
-        if (e.cancelable) { e.preventDefault(); }
+        
+        if (e.cancelable) {
+            e.preventDefault();
+        }
 
-        const pos = getPosition(e);
+        const pos = getPos(e);
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 20, 0, Math.PI * 2);
+        ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
         ctx.fill();
 
-        scratchPoints++;
-        if (scratchPoints > 40 && !scratched) {
+        checkReveal();
+    }
+
+    function checkReveal() {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imageData.data;
+        let transparentCount = 0;
+
+        for (let i = 3; i < pixels.length; i += 4) {
+            if (pixels[i] === 0) transparentCount++;
+        }
+
+        const percentage = (transparentCount / (pixels.length / 4)) * 100;
+        
+        if (percentage > 45 && !scratched) {
             scratched = true;
             wrap.classList.add('revealed');
             document.getElementById('event-details').classList.remove('blurred');
             fireConfetti();
+            canvas.style.transition = "opacity 0.5s ease";
+            canvas.style.opacity = "0";
+            setTimeout(() => { canvas.style.pointerEvents = "none"; }, 500);
         }
     }
 
-    canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
-    canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, { passive: false });
-    window.addEventListener('mouseup', () => { isDrawing = false; });
-    window.addEventListener('touchend', () => { isDrawing = false; });
-    canvas.addEventListener('mousemove', scratch);
+    // Touch events (passive: false is REQUIRED for iOS/Android to prevent scrolling)
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
     canvas.addEventListener('touchmove', scratch, { passive: false });
-    
+    window.addEventListener('touchend', stopDraw);
+    canvas.addEventListener('touchcancel', stopDraw);
+
+    // Mouse events
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', scratch);
+    window.addEventListener('mouseup', stopDraw);
+
     // Initially blur the details below it
     document.getElementById('event-details').classList.add('blurred');
 }
