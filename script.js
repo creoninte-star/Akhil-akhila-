@@ -243,13 +243,39 @@ btnBack.addEventListener('click', () => {
     setTimeout(() => step1.classList.remove('hidden-step'), 100);
 });
 
+const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL';
+
 formStep.addEventListener('submit', (e) => {
     e.preventDefault();
-    formStep.classList.add('hidden-step');
-    setTimeout(() => {
-        successStep.classList.remove('hidden-step');
-        fireConfetti();
-    }, 100);
+    
+    // Get form data
+    const formData = new FormData(formStep);
+    
+    // Change button text to show loading
+    const submitBtn = formStep.querySelector('.rsvp-submit-btn');
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = 'Submitting...';
+    submitBtn.disabled = true;
+
+    // Send data to Google Sheets
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        // Hide form and show success
+        formStep.classList.add('hidden-step');
+        setTimeout(() => {
+            successStep.classList.remove('hidden-step');
+            fireConfetti();
+        }, 100);
+    })
+    .catch(error => {
+        console.error('Error!', error.message);
+        alert('Something went wrong. Please try again.');
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
+    });
 });
 
 // Slideshow Logic
